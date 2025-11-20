@@ -81,6 +81,30 @@ _abs_complete() {
         config-manager)
             local opts="$common_opts --script get set delete list search edit reset import export profile interactive"
             ;;
+        log-aggregator)
+            local opts="$common_opts --source --file --remote --pattern --level --since --until --tail --lines --aggregate --stats --correlate --output --format --alert --alert-email"
+            ;;
+        metrics-reporter)
+            local opts="$common_opts --type --metric --process --interval --duration --threshold --output --format --timestamp --labels --aggregate --percentiles"
+            ;;
+        trend-analyzer)
+            local opts="$common_opts --file --column --delimiter --time-col --analyze --forecast --anomalies --threshold --moving-avg --growth --seasonality --correlation --chart --output --format"
+            ;;
+        dashboard-generator)
+            local opts="$common_opts --config --type --widgets --layout --refresh --title --theme --output --data-source --no-color"
+            ;;
+        data-converter)
+            local opts="$common_opts --input --output --from --to --delimiter --pretty --validate --transform --filter --batch --recursive"
+            ;;
+        etl-pipeline)
+            local opts="$common_opts --config --source-type --source-path --dest-type --dest-path --transform --validate --dry-run --parallel"
+            ;;
+        data-validator)
+            local opts="$common_opts --input --schema --format --strict --show-errors --output"
+            ;;
+        migration-assistant)
+            local opts="$common_opts --source --destination --type --batch-size --dry-run --no-validate --no-backup --resume"
+            ;;
         *)
             opts="$common_opts"
             ;;
@@ -126,10 +150,32 @@ _abs_complete() {
                 password-generator)
                     opts="random memorable pronounceable passphrase pin"
                     ;;
+                metrics-reporter)
+                    opts="system process network disk custom"
+                    ;;
+                dashboard-generator)
+                    opts="terminal html both"
+                    ;;
+                migration-assistant)
+                    opts="file directory csv-to-json"
+                    ;;
             esac
             ;;
         --format)
-            opts="text json csv xml"
+            case "$script_name" in
+                metrics-reporter)
+                    opts="text json prometheus influx graphite csv"
+                    ;;
+                log-aggregator|trend-analyzer|data-converter|data-validator)
+                    opts="text json csv xml yaml html"
+                    ;;
+                *)
+                    opts="text json csv xml"
+                    ;;
+            esac
+            ;;
+        --from|--to)
+            opts="json csv xml yaml toml"
             ;;
         --compression)
             opts="gzip bzip2 xz none"

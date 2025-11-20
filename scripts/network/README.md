@@ -50,5 +50,26 @@ sudo ./bandwidth-monitor.sh -p -t 5      # Top 5 processes by bandwidth
 
 ---
 
+### 3. `wifi-analyzer.sh`
+Wi-Fi diagnostics toolkit that inspects interface health, scans nearby networks, recommends optimal channels, and exports JSON/CSV reports.
+
+**Features:**
+- Auto-detect Wi-Fi interface or specify manually
+- Live summary: SSID, signal, bitrate, channel, IPs
+- High-resolution scans using `nmcli/iw` with channel congestion analysis
+- JSON/CSV export for reporting or dashboards
+- Dry-run planner and monitoring loop (`--monitor 5`)
+- Channel recommendations for 2.4 GHz and 5 GHz bands
+
+**Usage:**
+```bash
+./wifi-analyzer.sh --scan --channel-plan          # one-off scan + recommendations
+./wifi-analyzer.sh --monitor 10 --scan            # live monitor, update every 10s
+./wifi-analyzer.sh --format json --export wifi.json
+./wifi-analyzer.sh -i wlp0s20f3 --scan --top 25   # custom interface + top N networks
+```
+
+---
+
 **Note**: Some scripts may require root privileges for network operations.
 

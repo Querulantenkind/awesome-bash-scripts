@@ -145,6 +145,48 @@ Efficient sync-based backup using rsync with support for remote backups, bandwid
 
 ---
 
+### 4. cloud-backup.sh
+**Hybrid cloud backup orchestrator with rclone integration and encryption**
+
+Seamlessly packages local data, optionally encrypts it, and ships to both local targets and any rclone-supported remote (S3, Backblaze, OneDrive, etc.). Includes retention, alerting, JSON exports, and profiles.
+
+#### Features
+- ✅ **Multi-target delivery**: Local cache + any rclone remote
+- ✅ **Compression profiles**: `tar.gz`, `tar.xz`, `tar.zst`, or raw tar
+- ✅ **Encryption**: GPG symmetric or age recipients
+- ✅ **Retention policies**: Local pruning + remote `--min-age` cleanup
+- ✅ **Alerts & verification**: Checksums, optional alerts via notifications
+- ✅ **Profiles**: Load reusable configs from `~/.config/awesome-bash-scripts`
+- ✅ **Output formats**: Human summary, machine-friendly JSON, CSV
+- ✅ **Dry-run planner**: Show actions without touching data
+
+#### Usage Examples
+
+```bash
+# Backup /srv to Backblaze B2 with GPG encryption
+./cloud-backup.sh -s /srv -r b2:company/backups --encrypt gpg --key-file ~/.keys/b2.pass
+
+# Local staging with tar.xz compression and 14-day retention
+./cloud-backup.sh -s /var/log -d /backups/logs --compression tar.xz --retention 14
+
+# JSON summary for automation pipelines
+./cloud-backup.sh -s /data --remote s3:prod/backups --json
+
+# Dry-run planner
+./cloud-backup.sh -s /srv/app --remote onedrive:abs --dry-run
+
+# Restore from remote archive to /restore
+./cloud-backup.sh --restore srv-20241120-0100.tar.gz --target /restore --remote b2:company/backups
+```
+
+#### Notes
+- Metadata stored under `${ABS_LOG_DIR}/cloud-backups`
+- `--profile NAME` loads configs from `~/.config/awesome-bash-scripts/profiles/cloud-backup/`
+- Use `--bandwidth` to throttle rclone uploads (KB/s)
+- JSON/CSV output integrates with Prometheus, SIEM, or custom dashboards
+
+---
+
 ## 🛡️ Backup Strategies
 
 ### Full Backups

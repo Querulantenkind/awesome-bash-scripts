@@ -138,6 +138,45 @@ sudo ./firewall-manager.sh list
 
 ---
 
+### 3. integrity-monitor.sh
+**File integrity monitoring with baselines, JSON reporting, and notifications**
+
+Creates cryptographic baselines for critical paths, detects file changes, permission drifts, and deletions, and can continuously watch with interval scans or export machine-friendly reports.
+
+#### Features
+- ✅ **Baseline management**: `init` to snapshot directories/files
+- ✅ **Multiple hash algorithms**: sha256 (default), sha1, md5
+- ✅ **JSON + text reports**: Save to `${ABS_LOG_DIR}/integrity/last-report.json`
+- ✅ **Notifications**: `--notify` hooks into desktop/email/webhook channels
+- ✅ **Watch mode**: Continuous scans with configurable intervals
+- ✅ **Selective paths**: Add multiple `--path` targets (defaults to `/etc`)
+
+#### Usage Examples
+```bash
+# Create baseline for /etc and /usr/local/bin
+./integrity-monitor.sh init -p /etc -p /usr/local/bin
+
+# Scan current state and print summary
+./integrity-monitor.sh scan -p /etc -f table
+
+# Export JSON report
+./integrity-monitor.sh scan -p /etc --format json > integrity.json
+
+# Continuous watch every 60 seconds with notifications
+./integrity-monitor.sh watch -p /etc -i 60 --notify
+
+# Show last saved report
+./integrity-monitor.sh report
+```
+
+#### Workflow Tips
+- Store baseline at `/var/backups/integrity-baseline.db` using `--baseline`
+- Combine with cron: `0 * * * * /path/to/integrity-monitor.sh scan -p /etc >/dev/null`
+- Use `--hash sha1` when aligning with legacy compliance tools
+- Pair with `cloud-backup.sh` to offload baseline snapshots securely
+
+---
+
 ## 🛡️ Security Best Practices
 
 ### Regular Security Audits

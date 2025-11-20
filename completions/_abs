@@ -1,0 +1,247 @@
+#compdef abs-system-monitor abs-service-monitor abs-log-analyzer abs-network-monitor abs-backup-manager abs-database-backup abs-sync-backup abs-file-organizer abs-duplicate-finder abs-bulk-renamer abs-system-info abs-package-cleanup abs-security-audit abs-firewall-manager abs-port-scanner abs-bandwidth-monitor abs-password-generator abs-system-benchmark abs-config-manager awesome-bash
+
+################################################################################
+# Zsh Completion for Awesome Bash Scripts
+# Version: 1.0.0
+#
+# To use this completion, place it in your fpath:
+#   cp _abs /usr/local/share/zsh/site-functions/
+#
+# Or add to your .zshrc:
+#   fpath=(~/.local/share/zsh/site-functions $fpath)
+#   autoload -U compinit && compinit
+################################################################################
+
+# Main completion dispatcher
+_abs() {
+    local context state state_descr line
+    typeset -A opt_args
+    
+    # Get script name without abs- prefix
+    local script_name="${words[1]#abs-}"
+    
+    # Common options for all scripts
+    local common_args=(
+        '(-h --help)'{-h,--help}'[Show help message]'
+        '(-v --verbose)'{-v,--verbose}'[Verbose output]'
+        '(-q --quiet)'{-q,--quiet}'[Quiet mode]'
+    )
+    
+    case "$script_name" in
+        system-monitor)
+            _arguments -s -S \
+                $common_args \
+                '--once[Run once and exit]' \
+                '--watch[Continuous monitoring]' \
+                '--interval[Update interval]:seconds:' \
+                '--network[Monitor network]' \
+                '--processes[Monitor processes]' \
+                '--disk[Monitor disk usage]' \
+                '--cpu-alert[CPU alert threshold]:percent:' \
+                '--mem-alert[Memory alert threshold]:percent:' \
+                '--disk-alert[Disk alert threshold]:percent:' \
+                '--json[JSON output]' \
+                '--log-file[Log file]:file:_files' \
+                '--config[Config file]:file:_files'
+            ;;
+        
+        service-monitor)
+            _arguments -s -S \
+                $common_args \
+                '--service[Service to monitor]:service:_systemd_services' \
+                '--all[Monitor all services]' \
+                '--auto-restart[Auto-restart failed services]' \
+                '--notify-desktop[Desktop notifications]' \
+                '--notify-email[Email notifications]' \
+                '--check-interval[Check interval]:seconds:' \
+                '--max-retries[Max restart retries]:count:' \
+                '--json[JSON output]' \
+                '--log-file[Log file]:file:_files' \
+                '--config[Config file]:file:_files'
+            ;;
+        
+        log-analyzer)
+            _arguments -s -S \
+                $common_args \
+                '--file[Log file to analyze]:file:_files' \
+                '--follow[Follow log file]' \
+                '--pattern[Search pattern]:pattern:' \
+                '--error[Show errors only]' \
+                '--warning[Show warnings only]' \
+                '--http[HTTP log analysis]' \
+                '--stats[Show statistics]' \
+                '--json[JSON output]' \
+                '--time-from[Start time]:time:' \
+                '--time-to[End time]:time:' \
+                '--ip-stats[IP statistics]'
+            ;;
+        
+        backup-manager)
+            _arguments -s -S \
+                $common_args \
+                '--backup[Perform backup]' \
+                '--restore[Restore backup]:backup:_files -/' \
+                '--list[List backups]' \
+                '--verify[Verify backup]' \
+                '--type[Backup type]:type:(full incremental differential)' \
+                '--source[Source directory]:directory:_files -/' \
+                '--destination[Destination]:directory:_files -/' \
+                '--compression[Compression]:type:(gzip bzip2 xz none)' \
+                '--encrypt[Encrypt backup]' \
+                '--exclude[Exclude pattern]:pattern:' \
+                '--rotation[Rotation days]:days:' \
+                '--dry-run[Dry run mode]'
+            ;;
+        
+        database-backup)
+            _arguments -s -S \
+                $common_args \
+                '--type[Database type]:type:(mysql postgresql mongodb sqlite)' \
+                '--host[Database host]:host:_hosts' \
+                '--port[Database port]:port:' \
+                '--user[Database user]:user:' \
+                '--password[Database password]:password:' \
+                '--database[Database name]:database:' \
+                '--output-dir[Output directory]:directory:_files -/' \
+                '--compression[Compression]:type:(gzip bzip2 xz none)' \
+                '--encrypt[Encrypt backup]' \
+                '--rotation[Rotation days]:days:' \
+                '--all-databases[Backup all databases]'
+            ;;
+        
+        port-scanner)
+            _arguments -s -S \
+                $common_args \
+                '(-p --ports)'{-p,--ports}'[Ports to scan]:ports:' \
+                '(-t --timeout)'{-t,--timeout}'[Timeout]:seconds:' \
+                '(-j --threads)'{-j,--threads}'[Threads]:count:' \
+                '--tcp[TCP scan]' \
+                '--udp[UDP scan]' \
+                '--all[Scan all ports]' \
+                '--common[Scan common ports]' \
+                '--top[Top N ports]:count:' \
+                '(-b --banner)'{-b,--banner}'[Grab banners]' \
+                '(-s --service)'{-s,--service}'[Detect services]' \
+                '(-o --output)'{-o,--output}'[Output file]:file:_files' \
+                '(-f --format)'{-f,--format}'[Format]:format:(text json csv xml)' \
+                '--stealth[Stealth scan]' \
+                '*:host:_hosts'
+            ;;
+        
+        password-generator)
+            _arguments -s -S \
+                $common_args \
+                '(-l --length)'{-l,--length}'[Length]:length:' \
+                '(-n --number)'{-n,--number}'[Count]:count:' \
+                '(-t --type)'{-t,--type}'[Type]:type:(random memorable pronounceable passphrase pin)' \
+                '(-s --strength)'{-s,--strength}'[Strength]:level:(weak fair good strong very-strong)' \
+                '--include[Include characters]:chars:' \
+                '--exclude[Exclude characters]:chars:' \
+                '--no-uppercase[No uppercase]' \
+                '--no-lowercase[No lowercase]' \
+                '--no-numbers[No numbers]' \
+                '--no-symbols[No symbols]' \
+                '(-w --words)'{-w,--words}'[Word count]:count:' \
+                '(-d --delimiter)'{-d,--delimiter}'[Delimiter]:char:' \
+                '(-c --copy)'{-c,--copy}'[Copy to clipboard]' \
+                '(-q --qrcode)'{-q,--qrcode}'[Generate QR code]' \
+                '(-o --output)'{-o,--output}'[Output file]:file:_files' \
+                '(-f --format)'{-f,--format}'[Format]:format:(plain json csv)'
+            ;;
+        
+        system-benchmark)
+            _arguments -s -S \
+                $common_args \
+                '(-a --all)'{-a,--all}'[All benchmarks]' \
+                '(-c --cpu)'{-c,--cpu}'[CPU benchmark]' \
+                '(-m --memory)'{-m,--memory}'[Memory benchmark]' \
+                '(-d --disk)'{-d,--disk}'[Disk benchmark]' \
+                '(-n --network)'{-n,--network}'[Network benchmark]' \
+                '(-q --quick)'{-q,--quick}'[Quick tests]' \
+                '(-f --full)'{-f,--full}'[Full tests]' \
+                '(-t --threads)'{-t,--threads}'[Threads]:count:' \
+                '(-s --size)'{-s,--size}'[Size]:mb:' \
+                '(-i --iterations)'{-i,--iterations}'[Iterations]:count:' \
+                '(-o --output)'{-o,--output}'[Output file]:file:_files' \
+                '--json[JSON output]' \
+                '--compare[Compare with]:file:_files'
+            ;;
+        
+        config-manager)
+            local -a commands
+            commands=(
+                'get:Get configuration value'
+                'set:Set configuration value'
+                'delete:Delete configuration value'
+                'list:List all configurations'
+                'search:Search configurations'
+                'edit:Edit config file'
+                'reset:Reset to defaults'
+                'import:Import configuration'
+                'export:Export configuration'
+                'profile:Manage profiles'
+                'interactive:Interactive mode'
+            )
+            
+            _arguments -s -S \
+                $common_args \
+                '(-s --script)'{-s,--script}'[Script name]:script:' \
+                '1:command:->command' \
+                '*::arg:->args'
+            
+            case "$state" in
+                command)
+                    _describe 'command' commands
+                    ;;
+                args)
+                    case "${words[2]}" in
+                        profile)
+                            local -a profile_commands
+                            profile_commands=(
+                                'save:Save profile'
+                                'load:Load profile'
+                                'list:List profiles'
+                            )
+                            _describe 'profile command' profile_commands
+                            ;;
+                        get|set|delete)
+                            # Complete config keys
+                            local config_file="${XDG_CONFIG_HOME:-$HOME/.config}/awesome-bash-scripts/config.conf"
+                            if [[ -f "$config_file" ]]; then
+                                local -a keys
+                                keys=(${(f)"$(grep -v '^#' "$config_file" | cut -d= -f1)"})
+                                _describe 'config key' keys
+                            fi
+                            ;;
+                    esac
+                    ;;
+            esac
+            return 0
+            ;;
+        
+        awesome-bash)
+            # Complete with available scripts
+            local -a scripts
+            local scripts_dir="${HOME}/.local/share/awesome-bash-scripts/scripts"
+            
+            if [[ -d "$scripts_dir" ]]; then
+                scripts=(${(f)"$(find "$scripts_dir" -name "*.sh" -type f | xargs -n1 basename -s .sh)"})
+                _describe 'script' scripts
+            fi
+            ;;
+        
+        *)
+            _arguments -s -S $common_args
+            ;;
+    esac
+}
+
+# Helper function for systemd services
+_systemd_services() {
+    local -a services
+    services=(${(f)"$(systemctl list-units --type=service --all --no-legend | awk '{print $1}' | sed 's/.service$//')"})
+    _describe 'service' services
+}
+
+# Register completion
+_abs "$@"

@@ -354,7 +354,62 @@ install_completion() {
     
     info "Setting up command completion..."
     
-    # TODO: Add bash completion setup
+    # Bash completion
+    local bash_completion_dir
+    if [[ "$INSTALL_TYPE" == "system" ]]; then
+        bash_completion_dir="/etc/bash_completion.d"
+    else
+        bash_completion_dir="$HOME/.local/share/bash-completion/completions"
+        mkdir -p "$bash_completion_dir"
+    fi
+    
+    if [[ -f "$SCRIPT_DIR/completions/abs-completion.bash" ]]; then
+        if [[ "$INSTALL_TYPE" == "system" ]]; then
+            sudo cp "$SCRIPT_DIR/completions/abs-completion.bash" "$bash_completion_dir/abs"
+        else
+            cp "$SCRIPT_DIR/completions/abs-completion.bash" "$bash_completion_dir/abs"
+        fi
+        info "Bash completion installed to $bash_completion_dir"
+    fi
+    
+    # Zsh completion
+    local zsh_completion_dir
+    if [[ "$INSTALL_TYPE" == "system" ]]; then
+        zsh_completion_dir="/usr/local/share/zsh/site-functions"
+    else
+        zsh_completion_dir="$HOME/.local/share/zsh/site-functions"
+        mkdir -p "$zsh_completion_dir"
+    fi
+    
+    if [[ -f "$SCRIPT_DIR/completions/_abs" ]]; then
+        if [[ "$INSTALL_TYPE" == "system" ]]; then
+            sudo cp "$SCRIPT_DIR/completions/_abs" "$zsh_completion_dir/_abs"
+        else
+            cp "$SCRIPT_DIR/completions/_abs" "$zsh_completion_dir/_abs"
+        fi
+        info "Zsh completion installed to $zsh_completion_dir"
+    fi
+    
+    # Add to shell rc if user install
+    if [[ "$INSTALL_TYPE" == "user" ]]; then
+        # Bash
+        if [[ -f "$HOME/.bashrc" ]]; then
+            if ! grep -q "abs-completion.bash" "$HOME/.bashrc"; then
+                echo "" >> "$HOME/.bashrc"
+                echo "# Awesome Bash Scripts completion" >> "$HOME/.bashrc"
+                echo "[[ -f $bash_completion_dir/abs ]] && source $bash_completion_dir/abs" >> "$HOME/.bashrc"
+            fi
+        fi
+        
+        # Zsh
+        if [[ -f "$HOME/.zshrc" ]]; then
+            if ! grep -q "zsh/site-functions" "$HOME/.zshrc"; then
+                echo "" >> "$HOME/.zshrc"
+                echo "# Awesome Bash Scripts completion" >> "$HOME/.zshrc"
+                echo "fpath=($zsh_completion_dir \$fpath)" >> "$HOME/.zshrc"
+            fi
+        fi
+    fi
     
     success "Completion setup done"
 }

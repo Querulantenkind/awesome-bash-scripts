@@ -2,14 +2,14 @@
 
 A comprehensive, production-ready collection of professional bash scripts for Linux system administration, automation, and daily tasks. Features an interactive menu system, auto-completion, centralized configuration management, and extensive documentation.
 
-[![Scripts](https://img.shields.io/badge/scripts-25-brightgreen)](scripts/)
+[![Scripts](https://img.shields.io/badge/scripts-35-brightgreen)](scripts/)
 [![Categories](https://img.shields.io/badge/categories-10%2F10-success)](scripts/)
 [![Complete](https://img.shields.io/badge/status-100%25%20complete-success)](scripts/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 ## ✨ Key Features
 
-- **25 Production-Ready Scripts** across all 10 categories
+- **35 Production-Ready Scripts** across all 10 categories
 - **Interactive Menu System** for easy browsing and execution
 - **Auto-Completion** for Bash and Zsh
 - **Configuration Management** with profiles and presets
@@ -33,16 +33,16 @@ awesome-bash-scripts/
 │   ├── abs-completion.bash # Bash completion
 │   └── _abs               # Zsh completion
 ├── scripts/               # Main scripts directory
-│   ├── monitoring/       # 4 scripts - System & service monitoring
-│   ├── backup/           # 3 scripts - Backup and recovery
-│   ├── file-management/  # 3 scripts - File operations
-│   ├── system/           # 2 scripts - System administration
-│   ├── security/         # 2 scripts - Security auditing
-│   ├── network/          # 2 scripts - Network tools
+│   ├── monitoring/       # 6 scripts - System & service monitoring
+│   ├── backup/           # 4 scripts - Backup and recovery
+│   ├── file-management/  # 4 scripts - File operations
+│   ├── system/           # 4 scripts - System administration
+│   ├── security/         # 3 scripts - Security auditing
+│   ├── network/          # 4 scripts - Network tools
 │   ├── utilities/        # 3 scripts - General utilities
-│   ├── development/      # 2 scripts - Development tools
+│   ├── development/      # 3 scripts - Development tools
 │   ├── media/            # 2 scripts - Media processing
-│   └── database/         # 0 scripts - Database management
+│   └── database/         # 2 scripts - Database management
 ├── tests/                # Testing framework
 │   ├── test-runner.sh    # Comprehensive test runner
 │   ├── unit/            # Unit tests
@@ -135,43 +135,52 @@ abs-config-manager profile list
 
 ## 📋 Script Categories
 
-### 🖥️ Monitoring Scripts (4 scripts)
+### 🖥️ Monitoring Scripts (6 scripts)
 - **system-monitor.sh** - Comprehensive system resource monitoring
 - **service-monitor.sh** - Systemd service health checking
 - **log-analyzer.sh** - Advanced log file analysis
 - **network-monitor.sh** - Network traffic monitoring
+- **disk-health-monitor.sh** - S.M.A.R.T. disk health monitoring
+- **ssl-certificate-monitor.sh** - SSL certificate expiration monitoring
 
 [View Monitoring Scripts →](scripts/monitoring/)
 
-### 💾 Backup Scripts (3 scripts)
+### 💾 Backup Scripts (4 scripts)
 - **backup-manager.sh** - Full/incremental/differential backups
 - **database-backup.sh** - Automated database backups (MySQL, PostgreSQL, MongoDB, SQLite)
 - **sync-backup.sh** - Rsync-based synchronization
+- **cloud-backup.sh** - Multi-cloud backup (S3, B2, GCS, Azure)
 
 [View Backup Scripts →](scripts/backup/)
 
-### 📁 File Management Scripts (3 scripts)
+### 📁 File Management Scripts (4 scripts)
 - **file-organizer.sh** - Intelligent file organization
 - **duplicate-finder.sh** - Find and remove duplicate files
 - **bulk-renamer.sh** - Powerful bulk file renaming
+- **disk-space-analyzer.sh** - Disk usage analysis and visualization
 
 [View File Management Scripts →](scripts/file-management/)
 
-### ⚙️ System Scripts (2 scripts)
+### ⚙️ System Scripts (4 scripts)
 - **system-info.sh** - Comprehensive system information
 - **package-cleanup.sh** - Package manager cleanup
+- **user-manager.sh** - User account management and auditing
+- **update-manager.sh** - System update automation with hooks
 
 [View System Scripts →](scripts/system/)
 
-### 🔒 Security Scripts (2 scripts)
+### 🔒 Security Scripts (3 scripts)
 - **security-audit.sh** - Security configuration audit
 - **firewall-manager.sh** - Universal firewall management
+- **ssh-hardening.sh** - SSH server hardening and auditing
 
 [View Security Scripts →](scripts/security/)
 
-### 🌐 Network Scripts (2 scripts)
+### 🌐 Network Scripts (4 scripts)
 - **port-scanner.sh** - Advanced port scanner with service detection
 - **bandwidth-monitor.sh** - Real-time bandwidth monitoring
+- **dns-checker.sh** - DNS resolution testing and diagnostics
+- **network-diagnostics.sh** - Comprehensive network troubleshooting
 
 [View Network Scripts →](scripts/network/)
 
@@ -182,9 +191,10 @@ abs-config-manager profile list
 
 [View Utility Scripts →](scripts/utilities/)
 
-### 💻 Development Scripts (2 scripts)
+### 💻 Development Scripts (3 scripts)
 - **git-toolkit.sh** - Git operations and statistics
 - **project-init.sh** - Project initialization wizard
+- **docker-cleanup.sh** - Docker system cleanup and optimization
 
 [View Development Scripts →](scripts/development/)
 
@@ -326,14 +336,14 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📊 Repository Statistics
 
-- **Total Scripts**: 25
+- **Total Scripts**: 35
 - **Categories Filled**: 10 out of 10 (100%) ✅
 - **Shared Libraries**: 4
 - **Test Coverage**: Unit and integration tests
 - **Documentation Files**: 8
-- **Lines of Code**: 16,000+
+- **Lines of Code**: 20,000+
 - **Active Maintenance**: ✅ Yes
-- **Status**: 🎉 **COMPLETE**
+- **Status**: 🎉 **ENHANCED**
 
 ## 🗺️ Roadmap
 

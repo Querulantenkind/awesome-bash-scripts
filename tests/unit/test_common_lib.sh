@@ -95,14 +95,14 @@ test_format_duration() {
 # Test file operations
 test_create_temp_file() {
     local temp_file=$(create_temp_file "test")
-    assert_true "[[ -f '$temp_file' ]]" "Temp file should exist"
+    assert_true $([[ -f "$temp_file" ]] && echo true || echo false) "Temp file should exist"
     assert_contains "$temp_file" "/tmp/test" "Should have correct prefix"
     rm -f "$temp_file"
 }
 
 test_create_temp_dir() {
     local temp_dir=$(create_temp_dir "test")
-    assert_true "[[ -d '$temp_dir' ]]" "Temp dir should exist"
+    assert_true $([[ -d "$temp_dir" ]] && echo true || echo false) "Temp dir should exist"
     assert_contains "$temp_dir" "/tmp/test" "Should have correct prefix"
     rm -rf "$temp_dir"
 }
@@ -125,6 +125,6 @@ test_is_root() {
 
 test_get_cpu_count() {
     local cpus=$(get_cpu_count)
-    assert_true "[[ '$cpus' =~ ^[0-9]+$ ]]" "CPU count should be a number"
-    assert_true "[[ $cpus -ge 1 ]]" "Should have at least 1 CPU"
+    assert_true $([[ "$cpus" =~ ^[0-9]+$ ]] && echo true || echo false) "CPU count should be a number"
+    assert_true $([[ $cpus -ge 1 ]] && echo true || echo false) "Should have at least 1 CPU"
 }

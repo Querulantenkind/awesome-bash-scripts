@@ -5,8 +5,8 @@
 # Description: Comprehensive system resource monitoring with alerts and logging
 # Author: Luca
 # Created: 2024-11-20
-# Modified: 2024-11-20
-# Version: 1.0.0
+# Modified: 2025-11-23
+# Version: 1.0.1
 #
 # Usage: ./system-monitor.sh [options]
 #

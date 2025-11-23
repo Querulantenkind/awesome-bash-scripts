@@ -7,8 +7,8 @@
 #              configures the environment for all scripts.
 # Author: Luca
 # Created: 2024-11-20
-# Modified: 2024-11-20
-# Version: 1.0.0
+# Modified: 2025-11-23
+# Version: 1.0.1
 #
 # Usage: ./install.sh [options]
 #
@@ -462,7 +462,7 @@ uninstall() {
 main() {
     echo ""
     echo -e "${WHITE}════════════════════════════════════════════════════════════${NC}"
-    echo -e "${WHITE}     Awesome Bash Scripts Installer v1.0.0${NC}"
+    echo -e "${WHITE}     Awesome Bash Scripts Installer v1.0.1${NC}"
     echo -e "${WHITE}════════════════════════════════════════════════════════════${NC}"
     echo ""
     

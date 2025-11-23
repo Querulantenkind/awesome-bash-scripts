@@ -2,7 +2,7 @@
 
 ################################################################################
 # Notifications Library - Multi-channel notification system
-# Version: 1.0.0
+# Version: 1.0.1
 #
 # This library provides a unified interface for sending notifications through:
 # - Desktop notifications (notify-send)
@@ -13,7 +13,7 @@
 ################################################################################
 
 # Prevent multiple sourcing
-[[ -n "$_ABS_NOTIFICATIONS_LOADED" ]] && return 0
+[[ -n "${_ABS_NOTIFICATIONS_LOADED:-}" ]] && return 0
 readonly _ABS_NOTIFICATIONS_LOADED=1
 
 # Source common library

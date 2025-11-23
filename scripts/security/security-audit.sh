@@ -7,7 +7,7 @@
 #              recommendations for hardening.
 # Author: Luca
 # Created: 2024-11-20
-# Version: 1.0.0
+# Version: 1.0.1
 #
 # Usage: ./security-audit.sh [options]
 #

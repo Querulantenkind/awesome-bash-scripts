@@ -6,7 +6,7 @@
 #              and iptables with easy rule management and common profiles.
 # Author: Luca
 # Created: 2024-11-20
-# Version: 1.0.0
+# Version: 1.0.1
 #
 # Usage: ./firewall-manager.sh [options] [action]
 #

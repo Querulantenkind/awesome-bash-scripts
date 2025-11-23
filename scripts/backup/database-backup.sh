@@ -7,8 +7,8 @@
 #              encryption, rotation, and automated scheduling support.
 # Author: Luca
 # Created: 2024-11-20
-# Modified: 2024-11-20
-# Version: 1.0.0
+# Modified: 2025-11-23
+# Version: 1.0.1
 #
 # Usage: ./database-backup.sh [options]
 #

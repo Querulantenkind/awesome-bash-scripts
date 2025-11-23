@@ -6,8 +6,8 @@
 #              conversion, preset profiles, quality settings, and format detection.
 # Author: Luca
 # Created: 2024-11-20
-# Modified: 2024-11-20
-# Version: 1.0.0
+# Modified: 2025-11-23
+# Version: 1.0.1
 #
 # Usage: ./video-converter.sh [options] <input> [output]
 #

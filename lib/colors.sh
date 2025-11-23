@@ -2,13 +2,13 @@
 
 ################################################################################
 # Colors Library - ANSI color codes and formatting
-# Version: 1.0.0
+# Version: 1.0.1
 #
 # This library provides consistent color and formatting codes across all scripts
 ################################################################################
 
 # Prevent multiple sourcing
-[[ -n "$_ABS_COLORS_LOADED" ]] && return 0
+[[ -n "${_ABS_COLORS_LOADED:-}" ]] && return 0
 readonly _ABS_COLORS_LOADED=1
 
 ################################################################################

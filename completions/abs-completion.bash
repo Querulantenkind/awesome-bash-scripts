@@ -2,7 +2,7 @@
 
 ################################################################################
 # Bash Completion for Awesome Bash Scripts
-# Version: 1.0.0
+# Version: 1.0.1
 #
 # To use this completion, source it in your .bashrc:
 #   source /path/to/abs-completion.bash

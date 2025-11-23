@@ -443,6 +443,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Last Updated**: November 20, 2024
-**Version**: 1.0.0
+**Last Updated**: November 23, 2025
+**Version**: 1.0.1
 **Maintainer**: Luca

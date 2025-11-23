@@ -2,13 +2,13 @@
 
 ################################################################################
 # Config Library - Configuration management for Awesome Bash Scripts
-# Version: 1.0.0
+# Version: 1.0.1
 #
 # This library provides centralized configuration management for all scripts
 ################################################################################
 
 # Prevent multiple sourcing
-[[ -n "$_ABS_CONFIG_LOADED" ]] && return 0
+[[ -n "${_ABS_CONFIG_LOADED:-}" ]] && return 0
 readonly _ABS_CONFIG_LOADED=1
 
 # Source common library

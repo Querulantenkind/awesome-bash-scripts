@@ -6,7 +6,7 @@
 #              support, case conversion, sequential numbering, and undo capability.
 # Author: Luca
 # Created: 2024-11-20
-# Version: 1.0.0
+# Version: 1.0.1
 #
 # Usage: ./bulk-renamer.sh [options] [files...]
 #

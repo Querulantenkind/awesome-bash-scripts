@@ -6,7 +6,7 @@
 #              quality checks, constraint enforcement, and detailed reporting.
 # Author: Luca
 # Created: 2024-11-20
-# Version: 1.0.0
+# Version: 1.0.1
 ################################################################################
 
 set -euo pipefail

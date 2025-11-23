@@ -2,7 +2,7 @@
 
 ################################################################################
 # Common Library - Shared functions for all Awesome Bash Scripts
-# Version: 1.0.0
+# Version: 1.0.1
 # 
 # This library provides common functionality used across all scripts including:
 # - Enhanced logging with levels
@@ -14,7 +14,7 @@
 ################################################################################
 
 # Prevent multiple sourcing
-[[ -n "$_ABS_COMMON_LOADED" ]] && return 0
+[[ -n "${_ABS_COMMON_LOADED:-}" ]] && return 0
 readonly _ABS_COMMON_LOADED=1
 
 ################################################################################

@@ -7,7 +7,7 @@
 #              system cleanup recommendations.
 # Author: Luca
 # Created: 2024-11-20
-# Version: 1.0.0
+# Version: 1.0.1
 #
 # Usage: ./package-cleanup.sh [options]
 #

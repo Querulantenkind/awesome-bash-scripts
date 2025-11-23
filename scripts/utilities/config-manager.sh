@@ -7,8 +7,8 @@
 #              global and script-specific configurations.
 # Author: Luca
 # Created: 2024-11-20
-# Modified: 2024-11-20
-# Version: 1.0.0
+# Modified: 2025-11-23
+# Version: 1.0.1
 #
 # Usage: ./config-manager.sh [options] [command]
 #

@@ -7,7 +7,7 @@
 #              deletion, and various selection strategies.
 # Author: Luca
 # Created: 2024-11-20
-# Version: 1.0.0
+# Version: 1.0.1
 #
 # Usage: ./duplicate-finder.sh [options] [directory]
 #

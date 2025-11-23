@@ -185,7 +185,7 @@ run_test() {
         return 0
     fi
     
-    ((TESTS_RUN++))
+    TESTS_RUN=$((TESTS_RUN + 1))
     
     if [[ "$QUIET" != "true" ]]; then
         echo -n "  Running $test_name... "
@@ -217,17 +217,17 @@ run_test() {
     
     # Check result
     if [[ $test_exit_code -eq 0 ]]; then
-        ((TESTS_PASSED++))
+        TESTS_PASSED=$((TESTS_PASSED + 1))
         if [[ "$QUIET" != "true" ]]; then
             print_success "PASS"
         fi
     elif [[ $test_exit_code -eq 2 ]]; then
-        ((TESTS_SKIPPED++))
+        TESTS_SKIPPED=$((TESTS_SKIPPED + 1))
         if [[ "$QUIET" != "true" ]]; then
             print_warning "SKIP"
         fi
     else
-        ((TESTS_FAILED++))
+        TESTS_FAILED=$((TESTS_FAILED + 1))
         print_error "FAIL"
         if [[ -n "${test_output:-}" ]] && [[ "$VERBOSE" != "true" ]]; then
             echo "$test_output" | sed 's/^/    /'
@@ -282,10 +282,10 @@ run_test_file() {
     source "$test_file"
     
     # Find and run all test functions
-    local test_functions=$(declare -F | grep "^declare -f test_" | awk '{print $3}')
+    local test_functions=$(declare -F | grep "^declare -f test_" | awk '{print $3}' | grep -vE "^(test_fail|test_skip)$")
     
     for func in $test_functions; do
-        run_test "$func" "$func"
+        run_test "$func" "$func" || true
     done
     
     # Unset test functions to avoid conflicts
@@ -300,7 +300,7 @@ run_test_file() {
 
 # Generate coverage report
 generate_coverage() {
-    info "Generating coverage report..."
+    print_info "Generating coverage report..."
     
     # Find all script files
     local scripts=$(find "$PROJECT_ROOT/scripts" -name "*.sh" -type f)
@@ -344,7 +344,7 @@ run_benchmark() {
     local command="$2"
     local iterations="${3:-10}"
     
-    info "Benchmarking: $name"
+    print_info "Benchmarking: $name"
     
     local total_time=0
     local min_time=999999
@@ -482,19 +482,19 @@ main() {
     # Run tests based on type
     case "$TEST_TYPE" in
         unit)
-            info "Running unit tests..."
+            print_info "Running unit tests..."
             for test_file in $(find_test_files "$SCRIPT_DIR/unit"); do
                 run_test_file "$test_file"
             done
             ;;
         integration)
-            info "Running integration tests..."
+            print_info "Running integration tests..."
             for test_file in $(find_test_files "$SCRIPT_DIR/integration"); do
                 run_test_file "$test_file"
             done
             ;;
         all)
-            info "Running all tests..."
+            print_info "Running all tests..."
             
             # Unit tests
             if [[ -d "$SCRIPT_DIR/unit" ]]; then

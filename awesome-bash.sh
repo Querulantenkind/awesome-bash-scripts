@@ -6,8 +6,8 @@
 #              Provides a user-friendly TUI for browsing and executing scripts.
 # Author: Luca
 # Created: 2024-11-20
-# Modified: 2024-11-20
-# Version: 1.0.0
+# Modified: 2025-11-23
+# Version: 1.0.1
 #
 # Usage: ./awesome-bash.sh [options] [script-name]
 #
@@ -42,7 +42,7 @@ source "${SCRIPT_DIR}/lib/colors.sh"
 # Configuration
 ################################################################################
 
-readonly VERSION="1.0.0"
+readonly VERSION="1.0.1"
 readonly SCRIPTS_DIR="$SCRIPT_DIR/scripts"
 
 # Menu state
